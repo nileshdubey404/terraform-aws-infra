@@ -20,7 +20,7 @@ module "jenkins" {
   instance_type             = "t2.medium"
   tag_name                  = "Jenkins:Ubuntu Linux EC2"
   public_key                = var.public_key
-  subnet_id                 = tolist(module.networking.aws_infra_public_subnets)[0]
+  subnet_id                 = tolist(module.networking.aws_infra_public_subnets)[1]
   sg_for_jenkins            = [module.security_group.sg_ec2_sg_ssh_http_id, module.security_group.sg_ec2_jenkins_port_8080_id]
   enable_public_ip_address  = true
  user_data_install_jenkins = templatefile("./jenkins-runner-script/jenkins-installer.sh", {})
